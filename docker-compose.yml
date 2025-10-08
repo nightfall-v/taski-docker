@@ -27,14 +27,12 @@ services:
       - db
     volumes:
       - static:/backend_static
-  # Имя третьего контейнера. Это контейнер с фронтендом
   frontend:
     env_file: .env
     build: ./frontend/
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static:/frontend_static
-    # Добавляем новый контейнер: gateway
   gateway:
     # Сбилдить и запустить образ, 
     # описанный в Dockerfile в папке gateway
@@ -45,4 +43,4 @@ services:
     # перенаправление всех запросов с порта 8000 хоста
     # на порт 80 контейнера
     ports:
-      - 8000:80 
+      - 8000:80
